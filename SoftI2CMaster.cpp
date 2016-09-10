@@ -269,6 +269,8 @@ void SoftI2CMaster::i2c_repstart(void)
 //
 void SoftI2CMaster::i2c_stop(void)
 {
+    // To meet the STOP condition: SDA should be low before doing stop.
+    i2c_sda_lo();                           // makes sda low surely.
     i2c_scl_hi();
     _delay_us(i2cbitdelay);
 
